@@ -16,7 +16,6 @@ class CustomerController extends Controller
         ];
         return response()->json($data);
     }
-
     // Store a new customer
     public function store(Request $request)
     {

@@ -6,15 +6,11 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-
-            $table->unsignedBigInteger('request_id');
+            $table->unsignedBigInteger('request_id')->unique();
             $table->foreign('request_id')->references('id')->on('s_requests');
             $table->integer('rating');
             $table->text('feedback')->nullable();
