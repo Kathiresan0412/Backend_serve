@@ -5,78 +5,50 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProviderController;
 
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
-
-// Route::get('/providers', [ProviderController::class, 'index']);
-// API Routes for Customers
-//Route::get('/customers', 'App\Http\Controllers\NewCustomersController@index');
-
-Route::get('/customers', 'App\Http\Controllers\CustomerController@index');
-Route::get('/providers', 'App\Http\Controllers\ProviderController@index');
-Route::get('/requests', 'App\Http\Controllers\SRequestController@index');
-Route::get('/services', 'App\Http\Controllers\ServiceController@index');
-
 Route::get('/service-types', 'App\Http\Controllers\ServiceTypeController@index');
 Route::get('/service-types/{id}/', 'App\Http\Controllers\ServiceTypeController@show');
 Route::post('/service-types', 'App\Http\Controllers\ServiceTypeController@store');
 Route::put('/service-types/{id}/', 'App\Http\Controllers\ServiceTypeController@update');
 Route::delete('/service-types/{id}/', 'App\Http\Controllers\ServiceTypeController@delete');
 
+Route::get('/customers', 'App\Http\Controllers\CustomerController@index');
+Route::get('/customers/{id}/', 'App\Http\Controllers\CustomerController@show');
+Route::post('/customers', 'App\Http\Controllers\CustomerController@store');
+Route::put('/customers/{id}/', 'App\Http\Controllers\CustomerController@update');
+Route::delete('/customers/{id}/', 'App\Http\Controllers\CustomerController@delete');
 
-// Route::post('/customers', 'CustomersController@store'); // Create customer
-// //Route::get('/customers', 'CustomersController@index'); // Get all customers
-// Route::get('/customers/{id}', 'CustomersController@show'); // Get single customer
-// Route::put('/customers/{id}', 'CustomersController@update'); // Update customer
-// Route::delete('/customers/{id}', 'CustomersController@delete'); // Delete customer
+Route::get('/providers', 'App\Http\Controllers\ProviderController@index');
+Route::get('/providers/{id}/', 'App\Http\Controllers\ProviderController@show');
+Route::post('/providers', 'App\Http\Controllers\ProviderController@store');
+Route::put('/providers/{id}/', 'App\Http\Controllers\ProviderController@update');
+Route::delete('/providers/{id}/', 'App\Http\Controllers\ProviderController@delete');
 
-// // API Routes for Providers
+Route::get('/requests', 'App\Http\Controllers\SRequestController@index');
+Route::get('/requests/{id}/', 'App\Http\Controllers\SRequestController@show');
+Route::post('/requests', 'App\Http\Controllers\SRequestController@store');
+Route::put('/requests/{id}/', 'App\Http\Controllers\SRequestController@update');
+Route::delete('/requests/{id}/', 'App\Http\Controllers\SRequestController@delete');
 
-// // Route::get('/providers', 'ProviderController@index');
-// Route::get('/providers/{id}', 'ProviderController@show');
-// Route::put('/providers/{id}', 'ProviderController@update');
-// Route::delete('/providers/{id}', 'ProviderController@delete');
+Route::get('/services', 'App\Http\Controllers\ServiceController@index');
+Route::get('/services/{id}/', 'App\Http\Controllers\ServiceController@show');
+Route::post('/services', 'App\Http\Controllers\ServiceController@store');
+Route::put('/services/{id}/', 'App\Http\Controllers\ServiceController@update');
+Route::delete('/services/{id}/', 'App\Http\Controllers\ServiceController@delete');
 
-// // API Routes for Services
-//  Route::post('/services', 'ServiceController@store');
-// //Route::get('/services', 'ServiceController@index');
-// Route::get('/services/{id}', 'ServiceController@show');
-// Route::put('/services/{id}', 'ServiceController@update');
-// Route::delete('/services/{id}', 'ServiceController@delete');
+// Route::get('/users', 'App\Http\Controllers\UserController@index');
+// Route::get('/users/{id}/', 'App\Http\Controllers\UserController@show');
+// Route::post('/users', 'App\Http\Controllers\UserController@store');
+// Route::put('/users/{id}/', 'App\Http\Controllers\UserController@update');
+// Route::delete('/users/{id}/', 'App\Http\Controllers\UserController@delete');
 
-// // API Routes for service_types
-// // Route::post('/service_types', 'ServiceTypeController@store');
-// Route::get('/service_types', 'ServiceTypeController@index');
-// Route::get('/service_types/{id}', 'ServiceTypeController@show');
-// Route::put('/service_types/{id}', 'ServiceTypeController@update');
-// Route::delete('/service_types/{id}', 'ServiceTypeController@delete');
+Route::get('/rating', 'App\Http\Controllers\RatingController@index');
+Route::get('/rating/{id}/', 'App\Http\Controllers\RatingController@show');
+Route::post('/rating', 'App\Http\Controllers\RatingController@store');
+Route::put('/rating/{id}/', 'App\Http\Controllers\RatingController@update');
+Route::delete('/rating/{id}/', 'App\Http\Controllers\RatingController@delete');
 
-// // API Routes for request
-// // Route::post('/request', 'SRequestController@store');
-// Route::get('/request', 'SRequestController@index');
-// Route::get('/request/{id}', 'SRequestController@show');
-// Route::put('/request/{id}', 'SRequestController@update');
-// Route::delete('/request/{id}', 'SRequestController@delete');
-
-// // API Routes for Services
-// Route::post('/rating', 'RatingController@store');
-// Route::get('/rating', 'RatingController@index');
-// Route::get('/rating/{id}', 'RatingController@show');
-// Route::put('/rating/{id}', 'RatingController@update');
-// Route::delete('/rating/{id}', 'RatingController@delete');
-
-// // API Routes for Provider Service
-// Route::post('/provider-service', 'ProviderServiceController@store');
-// Route::get('/provider-service', 'ProviderServiceController@index');
-// Route::get('/provider-service/{id}', 'ProviderServiceController@show');
-// Route::put('/provider-service/{id}', 'ProviderServiceController@update');
-// Route::delete('/provider-service/{id}', 'ProviderServiceController@delete');
+Route::get('/provider-service', 'App\Http\Controllers\ProviderServiceController@index');
+Route::get('/provider-service/{id}/', 'App\Http\Controllers\ProviderServiceController@show');
+Route::post('/provider-service', 'App\Http\Controllers\ProviderServiceController@store');
+Route::put('/provider-service/{id}/', 'App\Http\Controllers\ProviderServiceController@update');
+Route::delete('/provider-service/{id}/', 'App\Http\Controllers\ProviderServiceController@delete');

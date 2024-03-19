@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('service_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
+            $table->text('img')->nullable();
             $table->timestamps();
         });
     }

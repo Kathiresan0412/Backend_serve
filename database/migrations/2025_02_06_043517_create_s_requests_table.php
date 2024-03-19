@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customers');
-            $table->unsignedBigInteger('provider_service_id');
-            $table->foreign('provider_service_id')->references('id')->on('provider_services');
+            $table->unsignedBigInteger('service_provider_id');
+            $table->foreign('service_provider_id')->references('id')->on('provider_services');
             $table->dateTime('from_date_time');
             $table->dateTime('to_date_time');
             $table->double('amount');
             $table->string('location');
-            $table->string('status');
+            $table->string('status')->default('Pending');
             $table->timestamps();
         });
     }

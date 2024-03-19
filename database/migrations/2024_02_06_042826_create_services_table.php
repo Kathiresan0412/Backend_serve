@@ -14,16 +14,13 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('service_type');
-            $table->foreign('service_type')->references('id')->on('service_types');
-            $table->text('description');
+            $table->unsignedBigInteger('service_type_id');
+            $table->foreign('service_type_id')->references('id')->on('service_types');
+            $table->text('description')->nullable();
+            $table->text('img')->nullable();
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('services');
