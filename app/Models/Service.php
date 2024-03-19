@@ -10,7 +10,7 @@ class Service extends Model
     use HasFactory;
     protected $table = 'services';
 
-    public $timestamps = false;
+   // public $timestamps = false;
 
     protected $fillable=[
         "service_type_id",

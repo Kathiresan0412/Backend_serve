@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('service_provider_id')->unique();
+            $table->unsignedBigInteger('service_provider_id');
             $table->foreign('service_provider_id')->references('id')->on('provider_services');
             $table->integer('rating');
             $table->text('feedback');

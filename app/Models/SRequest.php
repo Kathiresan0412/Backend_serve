@@ -10,7 +10,7 @@ class SRequest extends Model
     use HasFactory;
     protected $table = 's_requests';
 
-    public $timestamps = false;
+    //public $timestamps = false;
 
     protected $fillable = [
         "customer_id",

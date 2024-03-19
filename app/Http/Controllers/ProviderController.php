@@ -13,9 +13,9 @@ class ProviderController extends Controller
 
         public function index()
     {
-        $providers = DB::table('$providers')
-        ->select('providers.id as id', 'customers.user_id', 'users.name as name',
-         'users.email','users.mobile','users.img','users.user_name','users.role','users.passwords')
+        $providers = DB::table('providers')
+        ->select('providers.id as id', 'providers.user_id', 'users.name as name',
+         'users.email','users.mobile','users.img','users.user_name','users.role','users.password')
         ->leftJoin('users', 'users.id', '=', 'providers.user_id')->get();
       return response()->json($providers);
     }
@@ -23,13 +23,24 @@ class ProviderController extends Controller
     // Store a new customer
     public function store(Request $request)
     {
-        $provider = $request->all();
-        $user = Registration::store( $request->all());
-        // Add $user ->id  to the request data
-        $providerData['user_id'] = $user->id;
-        $provider = Provider::create($providerData);
-        $message = "Customer created successfully.";
-        return response()->json($provider,$message);}
+        $user = new User();
+        $user->user_name = $request->user_name;
+        $user->email = $request->email;
+        $user->name = $request->name;
+        $user->role = $request->role;
+        $user->password = $request->password;
+        $user->mobile = $request->mobile;
+        $user->img = $request->img;
+        $user->save();
+
+        $provider = new Provider();
+        $provider->user_id = $user->id;
+        $provider->save();
+
+        return response()->json(['message' => 'provider created successfully.', 'provider' => $provider]);
+
+
+    }
 
     // Get a customer by ID
     public function show($id)
@@ -42,17 +53,23 @@ class ProviderController extends Controller
     // Update a customer
     public function update(Request $request, $id)
     {
-      $provider = Provider::findOrFail($id);
-      $provider->update($request->all());
-      $user = User::find($provider->user_id);
-      if($user){
-        $user->update($request->all());
-        $message="success";
+      $user = User::findOrFail($id);
+      $user->user_name = $request->user_name;
+      $user->email = $request->email;
+      $user->name = $request->name;
+      $user->role = $request->role;
+      $user->password = $request->password;
+      $user->mobile = $request->mobile;
+      $user->img = $request->img;
+      $user->save();
+      $provider = Provider::where('user_id', $user->id)->first();
+      if($provider){
+        $provider->save();
       }else{
-        $message="Not fount this user";
       }
 
-      return response()->json($user,$message);
+      return response()->json($provider);
+
     }
 
     // Delete a customer

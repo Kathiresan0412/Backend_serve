@@ -47,8 +47,8 @@ Route::post('/rating', 'App\Http\Controllers\RatingController@store');
 Route::put('/rating/{id}/', 'App\Http\Controllers\RatingController@update');
 Route::delete('/rating/{id}/', 'App\Http\Controllers\RatingController@delete');
 
-Route::get('/provider-service', 'App\Http\Controllers\ProviderServiceController@index');
-Route::get('/provider-service/{id}/', 'App\Http\Controllers\ProviderServiceController@show');
-Route::post('/provider-service', 'App\Http\Controllers\ProviderServiceController@store');
-Route::put('/provider-service/{id}/', 'App\Http\Controllers\ProviderServiceController@update');
-Route::delete('/provider-service/{id}/', 'App\Http\Controllers\ProviderServiceController@delete');
+Route::get('/provider-service', 'App\Http\Controllers\ServiceProviderController@index');
+Route::get('/provider-service/{id}', 'App\Http\Controllers\ServiceProviderController@show');
+Route::post('/provider-service', 'App\Http\Controllers\ServiceProviderController@store');
+Route::put('/provider-service/{id}', 'App\Http\Controllers\ServiceProviderController@update');
+Route::delete('/provider-service/{id}', 'App\Http\Controllers\ServiceProviderController@delete');

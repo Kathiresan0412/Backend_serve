@@ -10,7 +10,7 @@ class ProviderService extends Model
     use HasFactory;
     protected $table = 'provider_services';
 
-    public $timestamps = false;
+    // public $timestamps = false;
 
     protected $fillable = [
         "provider_id",

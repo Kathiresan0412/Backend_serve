@@ -10,7 +10,7 @@ class Rating extends Model
     use HasFactory;
     protected $table = 'ratings';
 
-    public $timestamps = false;
+   // public $timestamps = false;
 
     protected $fillable=[
         "service_provider_id",
