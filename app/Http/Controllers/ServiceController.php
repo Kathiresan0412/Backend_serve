@@ -27,6 +27,7 @@ class ServiceController extends Controller
     public function show($id)
     {
         $Service = Service::findOrFail($id);
+        $Service->serviceType();
         return response()->json($Service);
     }
 

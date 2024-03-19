@@ -14,7 +14,7 @@ class SRequestController extends Controller
 }
 
 // Store a new customer
-public function store(Request $request) 
+public function store(Request $request)
 {
   $sRequest = SRequest::create($request->all());
   return response()->json($sRequest);
@@ -24,7 +24,9 @@ public function store(Request $request)
 public function show($id)
 {
   $sRequest = SRequest::findOrFail($id);
-  return response()->json($sRequest);  
+  $sRequest->customer();
+  $sRequest->gig();
+  return response()->json($sRequest);
 }
 
 // Update a customer
@@ -33,7 +35,7 @@ public function update(Request $request, $id)
   $sRequest = SRequest::findOrFail($id);
   $sRequest->update($request->all());
   return response()->json($sRequest);
-} 
+}
 
 // Delete a customer
 public function delete($id)

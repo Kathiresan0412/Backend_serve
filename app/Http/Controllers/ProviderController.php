@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Provider;
+use App\Models\User;
 use App\Providers\Registration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,18 +23,19 @@ class ProviderController extends Controller
     // Store a new customer
     public function store(Request $request)
     {
-        $customer = $request->all();
+        $provider = $request->all();
         $user = Registration::store( $request->all());
         // Add $user ->id  to the request data
-        $customerData['user_id'] = $user->id;
-        $customer = Provider::create($customerData);
+        $providerData['user_id'] = $user->id;
+        $provider = Provider::create($providerData);
         $message = "Customer created successfully.";
-        return response()->json($customer,$message);}
+        return response()->json($provider,$message);}
 
     // Get a customer by ID
     public function show($id)
     {
       $provider = Provider::findOrFail($id);
+      $provider->user();
       return response()->json($provider);
     }
 
@@ -42,15 +44,25 @@ class ProviderController extends Controller
     {
       $provider = Provider::findOrFail($id);
       $provider->update($request->all());
-      return response()->json($provider);
+      $user = User::find($provider->user_id);
+      if($user){
+        $user->update($request->all());
+        $message="success";
+      }else{
+        $message="Not fount this user";
+      }
+
+      return response()->json($user,$message);
     }
 
     // Delete a customer
     public function delete($id)
     {
       $provider = Provider::findOrFail($id);
+      $user = User::find($provider->user_id);
       $provider->delete();
-      return response()->json('Customer deleted');
+      $user->delete();
+      return response()->json('provider deleted');
     }
 
 

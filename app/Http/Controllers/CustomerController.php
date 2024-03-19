@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Provider;
+use App\Models\User;
 use App\Providers\Registration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -34,6 +36,7 @@ class CustomerController extends Controller
     public function show($id)
     {
         $customer = Customer::findOrFail($id);
+        $customer->user();
         return response()->json($customer);
     }
 
@@ -41,15 +44,24 @@ class CustomerController extends Controller
     public function update(Request $request, $id)
     {
         $customer = Customer::findOrFail($id);
-        $customer->update($request->all());
-        return response()->json($customer);
+        $user = User::find($customer->user_id);
+        if($user){
+          $user->update($request->all());
+          $message="success";
+        }else{
+          $message="Not fount this user";
+        }
+        return response()->json($user,$message);
+
     }
 
     // Delete a customer
     public function delete($id)
     {
         $customer = Customer::findOrFail($id);
+        $user = User::find($customer->user_id);
         $customer->delete();
+        $user->delete();
         return response()->json('Customer deleted');
     }
 }
