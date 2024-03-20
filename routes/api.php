@@ -34,6 +34,7 @@ Route::get('/services/{id}/', 'App\Http\Controllers\ServiceController@show');
 Route::post('/services', 'App\Http\Controllers\ServiceController@store');
 Route::put('/services/{id}/', 'App\Http\Controllers\ServiceController@update');
 Route::delete('/services/{id}/', 'App\Http\Controllers\ServiceController@delete');
+Route::get('/services/{ser_id}/provider-service/', 'App\Http\Controllers\ServiceController@getAllByService');
 
 // Route::get('/users', 'App\Http\Controllers\UserController@index');
 // Route::get('/users/{id}/', 'App\Http\Controllers\UserController@show');
@@ -52,3 +53,6 @@ Route::get('/provider-service/{id}', 'App\Http\Controllers\ServiceProviderContro
 Route::post('/provider-service', 'App\Http\Controllers\ServiceProviderController@store');
 Route::put('/provider-service/{id}', 'App\Http\Controllers\ServiceProviderController@update');
 Route::delete('/provider-service/{id}', 'App\Http\Controllers\ServiceProviderController@delete');
+Route::get('/provider-service/{id}/ratings', 'App\Http\Controllers\ServiceProviderController@getAllRating');
+
+

@@ -43,7 +43,8 @@ class RatingController extends Controller
     public function show($id)
     {
         $rating = Rating::findOrFail($id);
-        $rating->gig();
+        $rating->gig->service;
+        $rating->gig->provider->user;
         return response()->json($rating);
     }
 

@@ -46,7 +46,7 @@ class ProviderController extends Controller
     public function show($id)
     {
       $provider = Provider::findOrFail($id);
-      $provider->user();
+      $provider->user;
       return response()->json($provider);
     }
 

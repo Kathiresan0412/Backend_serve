@@ -53,8 +53,9 @@ class SRequestController extends Controller
     public function show($id)
     {
         $sRequest = SRequest::findOrFail($id);
-        $sRequest->customer();
-        $sRequest->gig();
+        $sRequest->gig->service;
+        $sRequest->customer->user;
+        $sRequest->gig->provider->user;
         return response()->json($sRequest);
     }
 

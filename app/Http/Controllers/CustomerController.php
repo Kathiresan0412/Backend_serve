@@ -47,8 +47,8 @@ class CustomerController extends Controller
     // Get a customer by ID
     public function show($id)
     {
-        $customer = Customer::findOrFail($id);
-        $customer->user();
+        $customer = Customer::find($id);
+        $customer->user;
         return response()->json($customer);
     }
 
