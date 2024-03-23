@@ -5,6 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProviderController;
 
+Route::post('/login', 'App\Http\Controllers\AuthControllerController@login');
+Route::post('/forgot-password', 'App\Http\Controllers\AuthControllerController@sendResetLinkEmail');
+Route::get('/users', 'App\Http\Controllers\AuthControllerController@getAll');
+Route::put('/users/{id}', 'App\Http\Controllers\AuthControllerController@update');
+Route::Delete('/users/{id}', 'App\Http\Controllers\AuthControllerController@delete');
+
 Route::get('/service-types', 'App\Http\Controllers\ServiceTypeController@index');
 Route::get('/service-types/{id}/', 'App\Http\Controllers\ServiceTypeController@show');
 Route::post('/service-types', 'App\Http\Controllers\ServiceTypeController@store');
