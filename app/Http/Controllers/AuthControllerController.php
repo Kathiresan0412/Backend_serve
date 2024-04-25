@@ -29,8 +29,8 @@ class AuthControllerController extends Controller
             return response()->json('User not found');
         }
         if ($user) {
-              $user->status="Inactive"
-            $user->delete();
+            $user->status="Inactive"
+            $user->update();
             return response()->json('User deleted');
         }
     }
