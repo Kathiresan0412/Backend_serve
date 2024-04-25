@@ -16,8 +16,15 @@ class AuthControllerController extends Controller
     //use SendsPasswordResetEmails;
     public function getAll(Request $request)
     {
-        $serviceType = User::all();
-        return response()->json($serviceType);
+       $users = User::all();
+    
+    foreach ($users as $user) {
+        // Hash each user's password
+        $user->password = Hash::make($user->password);
+    }
+
+    // Return the updated users data
+    return response()->json($users);
     }
     public function delete(Request $request, $id)
     {
