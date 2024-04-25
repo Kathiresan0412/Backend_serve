@@ -47,9 +47,15 @@ class CustomerController extends Controller
     // Get a customer by ID
     public function show($id)
     {
-        $customer = Customer::find($id);
-        $customer->user;
-        return response()->json($customer);
+        // $customer = Customer::find($id);
+        // $customer->user;
+        // return response()->json($customer);
+        $customers = DB::table('customers')
+        ->select('customers.id as id', 'customers.user_id', 'users.name as name',
+         'users.email','users.mobile','users.img','users.user_name','users.role','users.password')
+        ->leftJoin('users', 'users.id', '=', 'customers.user_id')
+        ->where('customers.id',$id)->get();
+        return response()->json($customers);
     }
 
     // Update a customer

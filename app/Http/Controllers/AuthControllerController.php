@@ -16,8 +16,11 @@ class AuthControllerController extends Controller
     //use SendsPasswordResetEmails;
     public function getAll(Request $request)
     {
-        $serviceType = User::all();
-        return response()->json($serviceType);
+        $user = DB::table('customers')
+        ->select('users.id as id','users.name as name',
+         'users.email','users.mobile','users.img','users.user_name','users.role','users.password')
+        ->leftJoin('users', 'users.id', '=', 'customers.user_id')->get();
+        return response()->json($user);
     }
     public function delete(Request $request, $id)
     {
