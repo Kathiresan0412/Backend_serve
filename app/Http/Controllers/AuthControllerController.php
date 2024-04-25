@@ -29,16 +29,22 @@ class AuthControllerController extends Controller
             return response()->json('User not found');
         }
         if ($user) {
+              $user->role="Deactive"
             $user->delete();
             return response()->json('User deleted');
         }
     }
 
     public function update(Request $request, $id)
-    {
-        $user = User::findOrFail($id);
-        $user->update($request->all());
-        return response()->json($user);
+    {   $user = User::findOrFail($id);
+        if (!$user) {
+            return response()->json('User not found');
+        }
+        if ($user) {
+              $user->role="Active"
+            $user->delete();
+            return response()->json('User deleted');
+        }
     }
 
     public function login(Request $request)
