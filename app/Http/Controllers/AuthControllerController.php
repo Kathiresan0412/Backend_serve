@@ -18,10 +18,10 @@ class AuthControllerController extends Controller
     {
        $users = User::all();
     
-    foreach ($users as $user) {
-        // Hash each user's password
-        $user->password = Hash::make($user->password);
-    }
+    // foreach ($users as $user) {
+    //     // Hash each user's password
+    //     $user->password = Hash::make($user->password);
+    // }
 
     // Return the updated users data
     return response()->json($users);
