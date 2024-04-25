@@ -59,22 +59,26 @@ class ProviderController extends Controller
     // Update a customer
     public function update(Request $request, $id)
     {
-      $user = User::findOrFail($id);
-      $user->user_name = $request->user_name;
-      $user->email = $request->email;
-      $user->name = $request->name;
-      $user->role = $request->role;
-      $user->password = $request->password;
-      $user->mobile = $request->mobile;
-      $user->img = $request->img;
-      $user->save();
-      $provider = Provider::where('user_id', $user->id)->first();
-      if($provider){
-        $provider->save();
-      }else{
-      }
+        $providers = Provider::findOrFail($id);
+        if ($providers) {
+            $user_id = $providers->user_id;
+            $user = User::findOrFail($user_id);
+            if ($user) {
+                $user->user_name = $request->user_name;
+                $user->email = $request->email;
+                $user->name = $request->name;
+                $user->role = $request->role;
+                $user->password = $request->password;
+                $user->mobile = $request->mobile;
+                $user->img = $request->img;
+                $user->save();
+            }
+            $providers->save();
+        }
 
-      return response()->json($provider);
+        $customer = Provider::where('user_id', $user->id)->first();
+        $customer->user();
+        return response()->json($customer);
 
     }
 

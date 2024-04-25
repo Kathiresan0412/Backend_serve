@@ -77,8 +77,6 @@ class CustomerController extends Controller
     // Update a customer
     public function update(Request $request, $id)
     {
-
-
         $customer = Customer::findOrFail($id);
         if ($customer) {
             $user_id = $customer->user_id;
