@@ -45,8 +45,14 @@ class ProviderController extends Controller
     // Get a customer by ID
     public function show($id)
     {
-      $provider = Provider::findOrFail($id);
-      $provider->user;
+    //   $provider = Provider::findOrFail($id);
+    //   $provider->user;
+    //   return response()->json($provider);
+      $provider = DB::table('providers')
+      ->select('providers.id as id', 'providers.user_id', 'users.name as name',
+       'users.email','users.mobile','users.img','users.user_name','users.role','users.password')
+      ->leftJoin('users', 'users.id', '=', 'providers.user_id')
+      ->where('providers.id',$id)->get();
       return response()->json($provider);
     }
 
