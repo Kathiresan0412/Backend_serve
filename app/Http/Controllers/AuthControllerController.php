@@ -18,7 +18,7 @@ class AuthControllerController extends Controller
     {
         $user = DB::table('customers')
         ->select('users.id as id','users.name as name',
-         'users.email','users.mobile','users.img','users.user_name','users.role','users.password')
+         'users.email','users.mobile','users.img','users.user_name','users.role','users.status','users.password')
         ->leftJoin('users', 'users.id', '=', 'customers.user_id')->get();
         return response()->json($user);
     }
