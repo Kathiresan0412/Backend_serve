@@ -42,7 +42,7 @@ class AuthControllerController extends Controller
         }
         if ($user) {
               $user->status="Active"
-            $user->delete();
+            $user->save();
             return response()->json('User deleted');
         }
     }
