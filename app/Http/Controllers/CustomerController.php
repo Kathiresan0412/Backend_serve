@@ -40,6 +40,7 @@ class CustomerController extends Controller
         $user->password = $request->password;
         $user->mobile = $request->mobile;
         $user->img = $request->img;
+        $user->status = "Active;
         $user->save();
 
         // Create a new customer associated with the user
