@@ -52,7 +52,7 @@ class ProviderController extends Controller
       ->select('providers.id as id', 'providers.user_id', 'users.name as name',
        'users.email','users.mobile','users.img','users.user_name','users.role','users.password')
       ->leftJoin('users', 'users.id', '=', 'providers.user_id')
-      ->where('providers.id',$id)->get();
+      ->where('providers.id',$id)  ->first();
       return response()->json($provider);
     }
 

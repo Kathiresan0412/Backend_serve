@@ -54,7 +54,7 @@ class CustomerController extends Controller
         ->select('customers.id as id', 'customers.user_id', 'users.name as name',
          'users.email','users.mobile','users.img','users.user_name','users.role','users.password')
         ->leftJoin('users', 'users.id', '=', 'customers.user_id')
-        ->where('customers.id',$id)->get();
+        ->where('customers.id',$id)  ->first();
         return response()->json($customers);
     }
 
