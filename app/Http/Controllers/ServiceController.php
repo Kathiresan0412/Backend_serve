@@ -12,7 +12,7 @@ class ServiceController extends Controller
     public function index()
     {
         $data = DB::table('services')
-        ->select('services.id','services.name', 'services.description', 'service_type_id', 'service_types.name as service_type_name')
+        ->select('services.id','services.name','services.img', 'services.description', 'service_type_id', 'service_types.name as service_type_name')
         ->leftJoin('service_types as service_types', 'service_types.id', '=', 'services.service_type_id')->get();
         return response()->json($data);
     }
