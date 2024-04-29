@@ -45,8 +45,22 @@ class SRequestController extends Controller
     // Store a new customer
     public function store(Request $request)
     {
-        $sRequest = SRequest::create($request->all());
-        return response()->json($sRequest);
+         // Validate the request data first
+    $validatedData = $request->validate([
+        'customer_id' => 'required', // Add any other validation rules here
+        'service_provider_id' => 'required',
+        'from_date_time' => 'required',
+        'to_date_time' => 'required',
+        'amount' => 'required',
+        'location' => 'required',
+        'status' => 'required',
+    ]);
+
+    // Create a new SRequest instance with the validated data
+    $sRequest = SRequest::create($validatedData);
+
+    // Return a JSON response with the created SRequest
+    return response()->json($sRequest);
     }
 
     // Get a customer by ID
