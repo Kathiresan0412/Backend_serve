@@ -59,8 +59,8 @@ class SRequestController extends Controller
     // Create a new SRequest instance with the validated data
     $sRequest = SRequest::create($validatedData);
 
-    // Return a JSON response with the created SRequest
-    return response()->json($sRequest);
+    // // Return a JSON response with the created SRequest
+    // return response()->json($sRequest);
     }
 
     // Get a customer by ID
