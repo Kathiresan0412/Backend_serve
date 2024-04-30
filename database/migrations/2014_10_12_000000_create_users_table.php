@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('user_name');
             $table->string('role')->nullable();
             $table->string('password');
+$table->string('status');
+           
             $table->string('img')->nullable();
             $table->string('mobile');
             $table->rememberToken();
