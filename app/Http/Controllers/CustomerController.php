@@ -40,19 +40,15 @@ class CustomerController extends Controller
         $user->password = $request->password;
         $user->mobile = $request->mobile;
         $user->img = $request->img;
-        $user->status = "Active;
+        $user->status = "Active";
         $user->save();
-
-        // Create a new customer associated with the user
         $customer = new Customer();
         $customer->user_id = $user->id;
         $customer->save();
-
-        // Return a response indicating successful creation
         return response()->json(['message' => 'Customer created successfully.', 'customer' => $customer]);
     }
 
-    // Get a customer by ID
+
     public function show($id)
     {
         // $customer = Customer::find($id);

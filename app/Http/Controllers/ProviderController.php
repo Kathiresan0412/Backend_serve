@@ -31,7 +31,7 @@ class ProviderController extends Controller
         $user->password = $request->password;
         $user->mobile = $request->mobile;
         $user->img = $request->img;
-          $user->status = "Active;
+        $user->status = "Active";
         $user->save();
 
         $provider = new Provider();
@@ -39,7 +39,6 @@ class ProviderController extends Controller
         $provider->save();
 
         return response()->json(['message' => 'provider created successfully.', 'provider' => $provider]);
-
 
     }
 
@@ -72,7 +71,7 @@ class ProviderController extends Controller
                 $user->password = $request->password;
                 $user->mobile = $request->mobile;
                 $user->img = $request->img;
-              
+
                 $user->save();
             }
             $providers->save();
