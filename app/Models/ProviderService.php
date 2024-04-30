@@ -16,8 +16,6 @@ class ProviderService extends Model
         "provider_id",
         "service_id",
         "amount_per_hour"
-
-
     ];
     public function provider()
     {

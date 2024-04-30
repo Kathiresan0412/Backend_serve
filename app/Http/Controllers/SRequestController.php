@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Customer;
 use App\Models\SRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 
 class SRequestController extends Controller
 {
@@ -45,22 +46,19 @@ class SRequestController extends Controller
     // Store a new customer
     public function store(Request $request)
     {
-         // Validate the request data first
-    $validatedData = $request->validate([
-        'customer_id' => 'required', // Add any other validation rules here
-        'service_provider_id' => 'required',
-        'from_date_time' => 'required',
-        'to_date_time' => 'required',
-        'amount' => 'required',
-        'location' => 'required',
-        'status' => 'required',
-    ]);
 
-    // Create a new SRequest instance with the validated data
-    $sRequest = SRequest::create($validatedData);
-
-    // // Return a JSON response with the created SRequest
-    // return response()->json($sRequest);
+        $customer = Customer::find($request->customer_id); // Assuming Customer is your model for the customers table
+if (!$customer) {
+    // Customer does not exist, handle accordingly
+    return "no";
+}
+      // return $request;
+        $requestData = $request->all();
+        // $requestData['customer_id'] = 1;
+        // $requestData['customer_id'] = 1;
+        $sRequest = SRequest::create($requestData);
+        return
+         response()->json($sRequest);
     }
 
     // Get a customer by ID
